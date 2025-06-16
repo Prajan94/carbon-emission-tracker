@@ -1,0 +1,65 @@
+<!-- Loading State -->
+<div *ngIf="loading()" class="min-h-screen p-4 flex flex-col items-center justify-center bg-[#134235]" role="alert"
+  aria-live="polite" aria-busy="true">
+  <div class="text-white px-6 py-4 w-full max-w-md text-center" role="status">
+    <span class="animate-pulse">AI is analyzing your carbon data...</span>
+  </div>
+</div>
+
+<!-- Success State -->
+<div *ngIf="!loading() && !error()" class="min-h-screen p-4 flex flex-col items-center justify-start bg-gray-50">
+  <div class="w-full max-w-md flex flex-col flex-grow gap-6">
+
+    <main class="flex-grow">
+      <!-- Insights Section -->
+      <section class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100" aria-labelledby="insights-title">
+        <h2 id="insights-title" class="text-4xl font-semibold text-center mb-4 text-[#134235]">
+          Insights
+        </h2>
+        <p class="text-gray-700 text-xl leading-relaxed whitespace-pre-line" role="region" aria-live="polite">
+          {{ insightsText }}
+        </p>
+      </section>
+
+      <!-- Suggestions Section -->
+      <section class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mt-6"
+        aria-labelledby="action-plan-title">
+        <h2 id="action-plan-title" class="text-4xl font-semibold text-center mb-4 text-[#134235]">
+          Suggestions
+        </h2>
+        <ul class="list-disc pl-5 text-gray-700 text-xl">
+          <li *ngFor="let suggestion of suggestions">
+            {{ suggestion }}
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Footer for Action Buttons -->
+    <footer class="w-full sticky bottom-0 p-4 flex justify-center gap-4" role="contentinfo"
+      aria-label="Actions">
+      <a routerLink="/calculate-form"
+        class="bg-white flex-1 font-semibold py-2 px-6 text-center rounded shadow hover:bg-green-100 transition text-[#134235]"
+        role="button" aria-label="Go to recalculate form">
+        Recalculate
+      </a>
+      <a routerLink="/results"
+        class="bg-white flex-1 font-semibold py-2 px-6 text-center rounded shadow hover:bg-green-100 transition text-[#134235]"
+        role="button" aria-label="View results">
+        Results
+      </a>
+    </footer>
+  </div>
+</div>
+
+<!-- Error State -->
+<div *ngIf="error()" class="min-h-screen p-4 flex flex-col items-center justify-center bg-[#134235]" role="alert"
+  aria-live="assertive">
+  <div class="text-red-200 px-6 py-4 w-full max-w-md text-center">
+    <p class="mb-4">{{ error() }}</p>
+    <a routerLink="/calculate-form" class="text-white underline hover:text-green-200 transition" role="button"
+      aria-label="Try again">
+      Go back and Recalculate
+    </a>
+  </div>
+</div>

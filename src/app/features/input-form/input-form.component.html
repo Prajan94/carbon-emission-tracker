@@ -1,0 +1,139 @@
+<div class="min-h-screen p-4 flex flex-col items-center justify-start bg-gray-50">
+  <div class="w-full max-w-md p-6 flex flex-col gap-6">
+    
+    <!-- Title -->
+    <header>
+      <h1 class="text-4xl sm:text-3xl font-bold text-center text-[#134235]">
+        Carbon Footprint
+      </h1>
+    </header>
+
+    <main class="flex-grow">
+      <form [formGroup]="carbonForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-8">
+
+        <!-- Energy Use Section -->
+        <section>
+          <h3 class="text-lg font-semibold mb-4 text-[#134235]">Energy Use</h3>
+  
+          <div class="mb-4">
+            <label for="electricity"  class="block mb-1">Electricity (kWh/month): {{ carbonForm.value.electricity }}</label>
+            <input
+              id="electricity"
+              type="range"
+              formControlName="electricity"
+              [attr.min]="sliderConfig.electricity.min"
+              [attr.max]="sliderConfig.electricity.max"
+              [attr.step]="sliderConfig.electricity.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+  
+          <div class="mb-4">
+            <label for="gas" class="block mb-1">Gas (m³/month): {{ carbonForm.value.gas }}</label>
+            <input
+            id="gas"
+              type="range"
+              formControlName="gas"
+              [attr.min]="sliderConfig.gas.min"
+              [attr.max]="sliderConfig.gas.max"
+              [attr.step]="sliderConfig.gas.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+  
+          <div>
+            <label for="heating-type" class="block mb-1">Heating Type</label>
+            <select id="heating-type" formControlName="heatingType" class="w-full p-2 rounded border border-gray-300">
+              <option *ngFor="let type of heatingTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+        </section>
+  
+        <!-- Transport Section -->
+        <section>
+          <h3 class="text-lg font-semibold mb-4 text-[#134235]">Transport</h3>
+  
+          <div class="mb-4">
+            <label for="car" class="block mb-1">Car Travel (km/month): {{ carbonForm.value.carTravel }}</label>
+            <input
+              id="car"
+              type="range"
+              formControlName="carTravel"
+              [attr.min]="sliderConfig.carTravel.min"
+              [attr.max]="sliderConfig.carTravel.max"
+              [attr.step]="sliderConfig.carTravel.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+  
+          <div class="mb-4">
+            <label for="public-transport" class="block mb-1">Public Transport (km/month): {{ carbonForm.value.publicTransport }}</label>
+            <input
+              id="public-transport"
+              type="range"
+              formControlName="publicTransport"
+              [attr.min]="sliderConfig.publicTransport.min"
+              [attr.max]="sliderConfig.publicTransport.max"
+              [attr.step]="sliderConfig.publicTransport.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+  
+          <div>
+            <label for="flight" class="block mb-1">Flights per Year</label>
+            <select id="flight" formControlName="flights" class="w-full p-2 rounded border border-gray-300">
+              <option *ngFor="let flight of flightOptions" [value]="flight">
+                {{ flight }}
+              </option>
+            </select>
+          </div>
+        </section>
+  
+        <!-- Food & Diet Section -->
+        <section>
+          <h3 class="text-lg font-semibold mb-4 text-[#134235]">Food & Diet</h3>
+  
+          <div class="mb-4">
+            <label for="meat-meals" class="block mb-1">Meat Meals per Week: {{ carbonForm.value.meatMeals }}</label>
+            <input
+              id="meat-meals"
+              type="range"
+              formControlName="meatMeals"
+              [attr.min]="sliderConfig.meatMeals.min"
+              [attr.max]="sliderConfig.meatMeals.max"
+              [attr.step]="sliderConfig.meatMeals.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+  
+          <div>
+            <label for="packaged-meals" class="block mb-1">Packaged Meals per Week: {{ carbonForm.value.packagedFood }}</label>
+            <input
+              id="packaged-meals"
+              type="range"
+              formControlName="packagedFood"
+              [attr.min]="sliderConfig.packagedFood.min"
+              [attr.max]="sliderConfig.packagedFood.max"
+              [attr.step]="sliderConfig.packagedFood.step"
+              class="w-full accent-[#134235]"
+            />
+          </div>
+        </section>
+  
+        <!-- CTA -->
+        <div class="text-center mt-4">
+          <button
+            type="submit"
+            class="bg-white text-[#134235] font-semibold py-2 px-6 rounded shadow hover:bg-green-100 transition"
+          >
+            Calculate
+          </button>
+        </div>
+  
+      </form>
+    </main>
+
+  </div>
+</div>

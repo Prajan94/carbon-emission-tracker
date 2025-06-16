@@ -1,0 +1,1 @@
+export const COUNTRIES = ['Germany', 'Poland', 'Netherlands', 'Sweden', 'Ireland'];

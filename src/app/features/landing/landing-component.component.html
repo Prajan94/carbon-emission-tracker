@@ -1,0 +1,42 @@
+<div class="min-h-screen flex flex-col justify-between items-center bg-[#134235] text-white p-4">
+  
+  <main class="flex-1 flex flex-col justify-center items-center text-center w-full max-w-md">
+  
+    <h1 class="text-4xl sm:text-3xl font-bold leading-relaxed">
+      Track your carbon footprint.<br />Live sustainably.
+    </h1>
+
+    <!-- Form Section -->
+    <form [formGroup]="landingForm" (ngSubmit)="startCalculation()" class="w-1/2 mt-10 px-4">
+      <div class="mb-4 text-left">
+        <label for="country" class="block text-white mb-2 text-lg">Select your country</label>
+
+        <select
+          id="country"
+          formControlName="country"
+          class="w-full text-green-900 px-4 py-2 rounded shadow bg-white"
+          aria-required="true"
+        >
+          <option value="">Select</option>
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+
+        <div *ngIf="landingForm.get('country')?.touched && landingForm.get('country')?.invalid"
+          class="text-red-200 mt-2 text-sm">
+          Country selection is required.
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- CTA Button -->
+  <footer class="w-full sticky bottom-0 p-4 flex justify-center gap-4">
+    <button
+      type="submit"
+      (click)="startCalculation()"
+      class="bg-white text-[#134235] font-semibold py-2 px-6 rounded shadow hover:bg-green-100 transition"
+    >
+      Start Now
+    </button>
+  </footer>
+</div>

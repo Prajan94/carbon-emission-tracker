@@ -1,0 +1,64 @@
+<div class="min-h-screen p-4 flex flex-col items-center justify-start bg-gray-50">
+
+  <div class="w-full max-w-md flex flex-col flex-grow">
+
+    <!-- Title -->
+    <header>
+      <h1 class="text-4xl sm:text-3xl font-bold  text-center mb-6 text-[#134235]" role="heading" aria-level="1">
+        Your Carbon Footprint
+      </h1>
+    </header>
+
+    <!-- Emission Chart Card -->
+    <main class="flex-grow">
+      <section #reportContainer class="bg-white rounded-xl shadow-md p-6 mb-6" aria-labelledby="emission-chart-title">
+        <p id="emission-chart-title" class="text-center font-bold text-5xl mb-4 text-[#134235]" aria-live="polite">
+          {{ totalEmission }} kg CO₂/week
+        </p>
+
+        <div class="relative w-full h-52" role="img" aria-label="Pie chart showing carbon footprint breakdown">
+          <canvas baseChart [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions"></canvas>
+        </div>
+      </section>
+
+      <!-- Tree Offset Equivalence -->
+      <section class="bg-white rounded-xl shadow-md p-6 mb-6 text-center border border-green-100">
+        <p class="text-5xl font-bold mb-4 text-[#134235]">🌳 Offset with Trees</p>
+        <p class="text-gray-700 mb-2 text-xl">
+          To offset <strong>{{ totalEmission }} kg CO₂/week</strong>, you’d need approximately:
+        </p>
+
+        <div class="text-3xl font-bold text-[#134235] mb-2">
+          {{ treesNeeded }} trees/year
+        </div>
+        <div class="flex justify-end mt-4">
+          <button
+            (click)="loadInsights()"
+            class="text-[#134235] underline hover:text-green-600 transition cursor-pointer bg-transparent border-none p-0"
+            type="button"
+            aria-label="Load detailed carbon footprint insights"
+          >
+            Insights
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer for Action Buttons -->
+    <footer class="w-full sticky bottom-0 p-4 flex justify-center gap-4" role="contentinfo"
+      aria-label="Carbon footprint actions">
+      <button (click)="recalculate()"
+        class="bg-white text-[#134235] font-semibold py-2 px-6 rounded shadow hover:bg-green-100 transition"
+        type="button" aria-label="Recalculate carbon footprint">
+        Recalculate
+      </button>
+
+      <button (click)="downloadReport()"
+        class="bg-white text-[#134235] font-semibold py-2 px-6 rounded shadow hover:bg-green-100 transition"
+        type="button" aria-label="Download carbon footprint report">
+        Download Report
+      </button>
+    </footer>
+
+  </div>
+</div>
