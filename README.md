@@ -66,7 +66,7 @@ A high-performance, modern Angular 18 application built to calculate, visualize,
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/your-username/carbon-emission-tracker.git
+git clone https://github.com/Prajan94/carbon-emission-tracker.git
 cd carbon-emission-tracker
 npm install
 npm start
